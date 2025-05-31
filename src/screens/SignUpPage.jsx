@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import React, { useState } from 'react';
 import Toast from 'react-native-toast-message';
+import { useNavigation } from '@react-navigation/native';
 
 const SignUpPage = () => {
   const [formData, setFormData] = useState({
@@ -20,6 +21,7 @@ const SignUpPage = () => {
   });
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const navigation = useNavigation();
 
   // Validation functions
   const validateEmail = (email) => {
@@ -265,12 +267,7 @@ const SignUpPage = () => {
                 <Text style={styles.loginText}>Already have an account? </Text>
                 <Pressable
                   onPress={() => {
-                    Toast.show({
-                      type: 'info',
-                      text1: 'Redirecting...',
-                      text2: 'Taking you to sign in page',
-                      visibilityTime: 2000,
-                    });
+                    navigation.push('Login');
                   }}
                 >
                   <Text style={styles.loginLink}>Sign In</Text>
